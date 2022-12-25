@@ -22,6 +22,6 @@
   new = "green bold"
   whitespace = "red reverse"
 [github]
-  user = gweng88
+  user = hbkse
 [help]
   autocorrect = 1
