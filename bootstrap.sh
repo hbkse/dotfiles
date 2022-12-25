@@ -18,7 +18,7 @@ install "xcode-select" "xcode-select --install"
 install "brew" "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
 install "git" "brew install git"
 install "diff-so-fancy" "brew install diff-so-fancy"
-install "alacritty" "brew install alacritty"
+install "alacritty" "brew install --cask alacritty"
 install "tmux" "brew install tmux"
 # install "zsh" "brew install zsh" # should already be installed by default
 
