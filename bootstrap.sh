@@ -30,3 +30,4 @@ fi
 
 install "code" "brew install --cask visual-studio-code"
 install "yabai" "brew install koekeishiya/formulae/yabai"
+install "skhd" "brew install koekeishiya/formulae/skhd"
