@@ -1,8 +1,8 @@
 # dotfiles
 
-macOS bootstraping and syncing configs
+_impressive, very nice... let's see paul allen's dotfiles_
 
-is this the best way to organize this? who knows, who cares.
+only for macOS
 
 ## Manual installs
 
