@@ -41,3 +41,6 @@ brew install --cask font-hack-nerd-font
 brew install --cask font-jetbrains-mono-nerd-font
 install "bat" "brew install bat"
 install "diff-so-fancy" "brew install diff-so-fancy"
+
+# 
+install "nvm" "brew install nvm" 
