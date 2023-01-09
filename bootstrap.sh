@@ -7,7 +7,7 @@ install() {
     local install_command=${2}
 
     if ! type ${name} &> /dev/null; then
-        echo "Installing ${name}"
+        echo "Installing ${name} with \"${install_command}\""
         eval $install_command
     else
         echo "${name} already installed"
@@ -16,13 +16,15 @@ install() {
 
 # base
 install "xcode-select" "xcode-select --install"
-install "brew" "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+install "brew" "curl -o /tmp/brew-installer.sh -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh && /bin/bash /tmp/brew-installer.sh"
+# may need to configure brew path after this
 install "git" "brew install git"
 # install "zsh" "brew install zsh" # should already be installed by default
 install "code" "brew install --cask visual-studio-code"
+install "subl" "brew install --cask sublime-text"
 
 # terminal and shell enhancements
-install "alacritty" "brew install --cask alacritty"
+install "alacritty" "brew install --cask alacritty --no-quarantine"
 install "tmux" "brew install tmux"
 if ! [ -d ~/.oh-my-zsh ]; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -32,7 +34,9 @@ fi
 
 # window manager
 install "yabai" "brew install koekeishiya/formulae/yabai"
+brew services start yabai
 install "skhd" "brew install koekeishiya/formulae/skhd"
+brew services start skhd
 
 # colorful stuff
 install "lsd" "brew install lsd"

@@ -7,4 +7,5 @@ ln -sf ${0:a:h}/.alacritty.yml $HOME/.alacritty.yml
 ln -sf ${0:a:h}/.yabairc $HOME/.yabairc
 ln -sf ${0:a:h}/.skhdrc $HOME/.skhdrc
 ln -sf ${0:a:h}/.zshrc $HOME/.zshrc
+ln -sf ${0:a:h}/.zprofile $HOME/.zprofile
 ln -sf ${0:a:h}/.gitconfig $HOME/.gitconfig
