@@ -2,8 +2,9 @@
   editor = vi
   pager = "diff-so-fancy | less --tabs=4 -RFX"
 [user]
-  name = George Weng
-  email = uncreativename0@gmail.com
+  name = hbkse
+[includeIf "gitdir:~/dev/"] # add directory specific git user config
+  path = ~/dev/.gitconfig
 [interactive]
   diffFilter = "diff-so-fancy --patch"
 [color]

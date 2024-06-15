@@ -34,9 +34,7 @@ fi
 
 # window manager
 install "yabai" "brew install koekeishiya/formulae/yabai"
-brew services start yabai
 install "skhd" "brew install koekeishiya/formulae/skhd"
-brew services start skhd
 
 # colorful stuff
 install "lsd" "brew install lsd"
@@ -46,5 +44,14 @@ brew install --cask font-jetbrains-mono-nerd-font
 install "bat" "brew install bat"
 install "diff-so-fancy" "brew install diff-so-fancy"
 
-# 
+# ?
 install "nvm" "brew install nvm" 
+
+# unnecessary stuff
+# install "spt" "brew install spotify-tui"
+# install "spotifyd" "brew install spotifyd"
+
+# background services
+brew services start yabai
+brew services start skhd
+# brew services start spotifyd
