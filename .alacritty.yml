@@ -217,6 +217,10 @@ colors:
     magenta: '0x906cff'
     cyan:    '0x63f2f1'
     white:   '0xa6b3cc'
+  
+  cursor:
+    # text: "#FBE7FA"
+    cursor: "#F8D0F6"
 
     # Bright and dim foreground colors
     #
@@ -454,7 +458,7 @@ colors:
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
