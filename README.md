@@ -2,12 +2,8 @@
 
 _impressive, very nice... let's see paul allen's dotfiles_
 
-only for macOS
+for macOS
 
-## Manual installs
+## notes
 
-setup [yabai](https://github.com/koekeishiya/yabai/wiki) manually
-
-## todo
-
-sync vscode extensions 
+might need to follow [yabai instructions](https://github.com/koekeishiya/yabai/wiki) if macOS updates changed a lot
