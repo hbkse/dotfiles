@@ -46,7 +46,7 @@ lctrl + alt + cmd - down : yabai -m window --display south; yabai -m display --f
 lctrl + alt + cmd - up : yabai -m window --display north; yabai -m display --focus north
 lctrl + alt + cmd - right : yabai -m window --display east; yabai -m display --focus east
 
-# Equalize size of windows
+# Equalize size of windows      
 lctrl + alt + cmd - p : yabai -m space --balance
 
 # Enable / Disable gaps in current workspace
@@ -80,3 +80,6 @@ lctrl + alt + cmd - i : \
 # Make window native fullscreen
 alt - p         : yabai -m window --toggle zoom-fullscreen
 lctrl + alt - p : yabai -m window --toggle native-fullscreen
+
+# disable cmd - tab to get used to skhd
+cmd - tab : /usr/bin/env osascript <<< "display notification \"Blocked cmd + tab\" with title \"cope\"";

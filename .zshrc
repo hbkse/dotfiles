@@ -107,3 +107,17 @@ source $(brew --prefix nvm)/nvm.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls='lsd'
 alias cat='bat'
+
+# Checkout latest master and rebase current branch. Don't force push to remote though! :)
+# Usage: grema
+grema() {
+	source_branch=$(git symbolic-ref --short -q HEAD)
+
+	git checkout master
+	git pull
+	git checkout $source_branch
+	git rebase master
+	git status
+
+	echo "\n******* git push -f if everything looks good *******\n"
+}
