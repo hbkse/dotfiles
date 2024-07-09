@@ -26,3 +26,7 @@
   user = hbkse
 [help]
   autocorrect = 1
+[alias]
+  undo = reset --soft HEAD^
+  diffl = diff HEAD~1
+  diffc = diff --cached
