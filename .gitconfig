@@ -30,3 +30,38 @@
   undo = reset --soft HEAD^
   diffl = diff HEAD~1
   diffc = diff --cached
+  # create new feature branch under dev/georgeweng/*
+  # smart checkout: if branch exists, switch; otherwise create it
+  ck  = "!f() {                                            \
+             tgt=dev/georgeweng/$1;                         \
+             if git show-ref --verify --quiet refs/heads/$tgt; then \
+               git checkout $tgt;                           \
+             else                                           \
+               git checkout -b $tgt;                        \
+             fi;                                            \
+           }; f"
+  
+  [alias]
+  # add → commit → push
+  slop = "!f() {                                            \
+              git add -A || exit;                           \
+              msg=\"$*\";                                   \
+              git commit -m \"$msg\" && git push;           \
+          }; f"
+  
+  # rebase current branch onto latest main/master (LLM generated, hope it works!)
+  rema = "!f() {                                                      \
+             cur=$(git symbolic-ref --quiet --short HEAD);            \
+             # figure out the repo’s primary branch:                  \
+             base=$(git symbolic-ref --quiet refs/remotes/origin/HEAD \
+                     2>/dev/null | sed 's@^refs/remotes/origin/@@');   \
+             [ -z \"$base\" ] && {                                    \
+                 git show-ref --verify --quiet refs/heads/main &&     \
+                 base=main || base=master;                            \
+             };                                                       \
+             git checkout \"$base\" && git pull --ff-only &&          \
+             git checkout \"$cur\"  && git rebase \"$base\";          \
+           }; f"
+  
+  # hard-reset untracked & ignored cruft
+  nuke = clean -xdf
