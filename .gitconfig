@@ -3,6 +3,7 @@
   pager = "diff-so-fancy | less --tabs=4 -RFX"
 [user]
   name = hbkse
+  email = hbkse@users.noreply.github.com
 [includeIf "gitdir:~/dev/"] # add directory specific git user config, if commiting under different emails
   path = ~/dev/.gitconfig
 [interactive]
@@ -26,6 +27,9 @@
   user = hbkse
 [help]
   autocorrect = 1
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+	pushInsteadOf = https://github.com/
 [alias]
   undo = reset --soft HEAD^
   diffl = diff HEAD~1
@@ -40,8 +44,6 @@
                git checkout -b $tgt;                        \
              fi;                                            \
            }; f"
-  
-  [alias]
   # add → commit → push
   slop = "!f() {                                            \
               git add -A || exit;                           \

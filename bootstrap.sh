@@ -5,7 +5,7 @@ echo "🚀 Bootstrapping development environment..."
 
 # Variables
 DEV_DIR="$HOME/dev"
-DOTFILES_REPO="https://github.com/hbkse/dotfiles.git"
+DOTFILES_REPO="git@github.com:hbkse/dotfiles.git"
 DOTFILES_DEFAULT_BRANCH="master"
 DOTFILES_DIR="$DEV_DIR/dotfiles"
 
@@ -62,6 +62,115 @@ else
     echo "❌ Error: brew command not found after installation"
     exit 1
 fi
+
+
+# Update hostname
+echo "Current hostname: $(hostname)"
+echo ""
+read -p "Enter new hostname (or press Enter to keep current): " new_hostname
+
+if [ -n "$new_hostname" ]; then
+    echo "🏷️  Setting hostname to: $new_hostname"
+    sudo scutil --set ComputerName "$new_hostname"
+    sudo scutil --set LocalHostName "$new_hostname"
+    sudo scutil --set HostName "$new_hostname"
+    sudo dscacheutil -flushcache
+    echo "✅ Hostname updated (takes effect after restart)"
+fi
+
+# GitHub SSH Key Setup
+echo "🔑 CONFIGURING GITHUB SSH AUTHENTICATION"
+
+# GitHub SSH Key Setup Part 1: Create SSH key if it doesn't exist
+if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
+    current_hostname=$(hostname)
+    echo ""
+    echo "🔐 No SSH key found. Creating new SSH key..."
+    echo "🏷️  Using identifier: $current_hostname-$(date +%Y%m%d)"
+    
+    echo ""
+    echo "🔑 Generating SSH key..."
+    ssh-keygen -t ed25519 -C "$current_hostname-$(date +%Y%m%d)"
+    
+    # Add to SSH agent
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ed25519
+    
+    echo "✅ SSH key created and added to agent"
+else
+    echo "✅ SSH key already exists at ~/.ssh/id_ed25519"
+    
+    # Make sure it's in the agent
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ed25519 2>/dev/null
+fi
+
+# GitHub SSH Key Setup Part 2: Add GitHub host config if it doesn't exist
+mkdir -p ~/.ssh
+if [ ! -f ~/.ssh/config ] || ! grep -q "Host github.com" ~/.ssh/config; then
+    echo ""
+    echo "⚙️  Adding GitHub host configuration to SSH config..."
+    
+    cat >> ~/.ssh/config << 'EOF'
+
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+EOF
+    
+    chmod 600 ~/.ssh/config
+    chmod 700 ~/.ssh
+    echo "✅ SSH config updated"
+else
+    echo "✅ GitHub host already configured in SSH config"
+fi
+
+# GitHub SSH Key Setup Part 3: Test GitHub SSH connection
+echo ""
+echo "🧪 Testing SSH connection to GitHub..."
+if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+    echo "✅ SSH connection to GitHub successful!"
+else
+    echo "⚠️  SSH connection to GitHub failed"
+    echo ""
+    echo "📋 Your public key has been copied to clipboard"
+    pbcopy < ~/.ssh/id_ed25519.pub
+    
+    # Loop until SSH connection works - no skip option
+    while true; do
+        echo ""
+        echo "🌐 ADD YOUR SSH KEY TO GITHUB:"
+        echo "   1. Go to: https://github.com/settings/ssh/new"
+        echo "   2. Title: '$current_hostname' (or whatever you prefer)"
+        echo "   3. Paste your key (already in clipboard)"
+        echo "   4. Click 'Add SSH key'"
+        echo ""
+        read -p "Press ENTER when you've added the key to GitHub..." -r
+        
+        echo ""
+        echo "🧪 Testing SSH connection..."
+        if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+            echo "✅ SSH connection successful! Continuing with setup..."
+            break  # Exit the loop - success!
+        else
+            echo "❌ SSH connection still failed"
+            echo ""
+            echo "💡 Troubleshooting checklist:"
+            echo "   • Did you paste the ENTIRE key (starts with ssh-ed25519)?"
+            echo "   • Did you click the 'Add SSH key' button?"
+            echo "   • Did you use 'Authentication Key' type (not Signing)?"
+            echo "   • Is your GitHub account verified?"
+            echo ""
+            echo "🔄 Let's try again. The key is still in your clipboard."
+            # Continue the loop
+        fi
+    done
+fi
+
+echo ""
+echo "✅ SSH setup complete"
+echo "Should be able to pull dotfiles repository from github"
 
 # Create dev directory
 if [ ! -d "$DEV_DIR" ]; then
@@ -198,10 +307,7 @@ echo "   • Add newly installed apps: Alacritty, VS Code, Discord, Spotify"
 echo "   • Right-click apps → Options → Keep in Dock"
 echo ""
 echo "4️⃣  SIGN INTO ACCOUNTS"
-echo "   • Sync your google chrome"
-echo ""
-echo "5️⃣  SET UP GIT"
-echo "   • git config --global user.email 'your.email@example.com'"
+echo "   • Sync your Google Chrome"
 echo ""
 echo "🔧 TROUBLESHOOTING:"
 echo "   • If yabai/skhd shortcuts don't work: Check System Settings → Accessibility"
