@@ -1,7 +1,3 @@
-# add shortcut to open alacritty?
-# add shortcut to open chrome?
-
-
 # focus navigation
 alt - left : yabai -m window --focus west
 alt - down : yabai -m window --focus south
@@ -83,3 +79,9 @@ lctrl + alt - p : yabai -m window --toggle native-fullscreen
 
 # disable cmd - tab to get used to skhd
 cmd - tab : /usr/bin/env osascript <<< "display notification \"Blocked cmd + tab\" with title \"cope\"";
+
+# shortcut to open terminal
+lctrl + t : open -na Alacritty
+
+# shortcut to open chrome
+lctrl + r : open -a "Google Chrome"

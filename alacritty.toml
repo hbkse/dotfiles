@@ -1,0 +1,81 @@
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Quit"
+key = "Q"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Command"
+
+[general]
+live_config_reload = true
+
+[colors.bright]
+black = "0x565575"
+blue = "0x65b2ff"
+cyan = "0x63f2f1"
+green = "0x62d196"
+magenta = "0x906cff"
+red = "0xff5458"
+white = "0xa6b3cc"
+yellow = "0xffb378"
+
+[colors.cursor]
+cursor = "#F8D0F6"
+
+[colors.normal]
+black = "0x100e23"
+blue = "0x91ddff"
+cyan = "0xaaffe4"
+green = "0x95ffa4"
+magenta = "0xc991e1"
+red = "0xff8080"
+white = "0xcbe3e7"
+yellow = "0xffe9aa"
+
+[colors.primary]
+background = "0x1b182c"
+foreground = "0xcbe3e7"
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[window]
+decorations = "buttonless"
+dynamic_padding = false
+opacity = 0.8
+startup_mode = "Windowed"
+
+[window.padding]
+x = 10
+y = 10
+
+[keyboard]

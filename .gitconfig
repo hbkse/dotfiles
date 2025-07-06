@@ -3,7 +3,7 @@
   pager = "diff-so-fancy | less --tabs=4 -RFX"
 [user]
   name = hbkse
-[includeIf "gitdir:~/dev/"] # add directory specific git user config
+[includeIf "gitdir:~/dev/"] # add directory specific git user config, if commiting under different emails
   path = ~/dev/.gitconfig
 [interactive]
   diffFilter = "diff-so-fancy --patch"
@@ -63,5 +63,5 @@
              git checkout \"$cur\"  && git rebase \"$base\";          \
            }; f"
   
-  # hard-reset untracked & ignored cruft
+  # hard-reset untracked & ignored cruft like build artifacts
   nuke = clean -xdf

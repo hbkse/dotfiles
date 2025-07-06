@@ -81,8 +81,8 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# export NVM_DIR=~/.nvm
+# source $(brew --prefix nvm)/nvm.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -110,14 +110,14 @@ alias cat='bat'
 
 # Checkout latest master and rebase current branch. Don't force push to remote though! :)
 # Usage: grema
-grema() {
-	source_branch=$(git symbolic-ref --short -q HEAD)
+# grema() {
+# 	source_branch=$(git symbolic-ref --short -q HEAD)
 
-	git checkout master
-	git pull
-	git checkout $source_branch
-	git rebase master
-	git status
+# 	git checkout master
+# 	git pull
+# 	git checkout $source_branch
+# 	git rebase master
+# 	git status
 
-	echo "\n******* git push -f if everything looks good *******\n"
-}
+# 	echo "\n******* git push -f if everything looks good *******\n"
+# }
