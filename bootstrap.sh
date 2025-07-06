@@ -9,7 +9,7 @@ DOTFILES_REPO="git@github.com:hbkse/dotfiles.git"
 DOTFILES_DEFAULT_BRANCH="master"
 DOTFILES_DIR="$DEV_DIR/dotfiles"
 
-# Install Xcode Command Line Tools if not present
+# Install Xcode Command Line Tools if needed
 if ! xcode-select -p &> /dev/null; then
     echo "Installing Xcode Command Line Tools..."
     xcode-select --install
@@ -17,7 +17,7 @@ if ! xcode-select -p &> /dev/null; then
     exit 1
 fi
 
-# Install Homebrew if not present
+# Install Homebrew if needed
 if ! command -v brew &> /dev/null; then
     echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -63,8 +63,7 @@ else
     exit 1
 fi
 
-
-# Update hostname
+# Prompt user to update hostname
 echo "Current hostname: $(hostname)"
 echo ""
 read -p "Enter new hostname (or press Enter to keep current): " new_hostname
@@ -78,10 +77,10 @@ if [ -n "$new_hostname" ]; then
     echo "✅ Hostname updated (takes effect after restart)"
 fi
 
-# GitHub SSH Key Setup
+# GitHub + SSH Key Setup
 echo "🔑 CONFIGURING GITHUB SSH AUTHENTICATION"
 
-# GitHub SSH Key Setup Part 1: Create SSH key if it doesn't exist
+# Create SSH key if needed
 if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     current_hostname=$(hostname)
     echo ""
@@ -105,7 +104,7 @@ else
     ssh-add ~/.ssh/id_ed25519 2>/dev/null
 fi
 
-# GitHub SSH Key Setup Part 2: Add GitHub host config if it doesn't exist
+# Add GitHub host config if needed
 mkdir -p ~/.ssh
 if [ ! -f ~/.ssh/config ] || ! grep -q "Host github.com" ~/.ssh/config; then
     echo ""
@@ -126,7 +125,7 @@ else
     echo "✅ GitHub host already configured in SSH config"
 fi
 
-# GitHub SSH Key Setup Part 3: Test GitHub SSH connection
+# Prompt user to add SSH key to GitHub if needed
 echo ""
 echo "🧪 Testing SSH connection to GitHub..."
 if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
@@ -169,10 +168,9 @@ else
 fi
 
 echo ""
-echo "✅ SSH setup complete"
-echo "Should be able to pull dotfiles repository from github"
+echo "✅ GitHub + SSH setup complete"
 
-# Create dev directory
+# Create dev directory if needed
 if [ ! -d "$DEV_DIR" ]; then
     echo "📁 Creating dev directory at $DEV_DIR"
     mkdir -p "$DEV_DIR"
@@ -248,7 +246,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-# Sync dotfiles to their proper locations
+# Copy dotfiles to their proper locations
 if [ -f "sync.sh" ]; then
     echo "🔄 Syncing dotfiles to system locations..."
     chmod +x sync.sh
