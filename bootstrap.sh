@@ -15,6 +15,8 @@ if ! xcode-select -p &> /dev/null; then
     xcode-select --install
     echo "⏳ Please complete the Xcode Command Line Tools installation and re-run this script."
     exit 1
+else
+    echo "✅ Xcode Command Line Tools already installed"
 fi
 
 # Install Homebrew if needed
@@ -226,7 +228,7 @@ if command -v yabai &> /dev/null || command -v skhd &> /dev/null; then
     fi
     
     if command -v skhd &> /dev/null; then
-        echo "   5. Add: /opt/homebrew/bin/skhd"
+        echo "   5. Add: /opt/homebrew/Cellar/skhd-zig/{version}/bin/skhd"
         echo "   Hint: Press CMD + SHIFT + G in Finder to folder search /opt/homebrew"
         echo ""
         echo "🔐 ALSO for skhd:"

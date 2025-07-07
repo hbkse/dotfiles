@@ -81,7 +81,7 @@ lctrl + alt - p : yabai -m window --toggle native-fullscreen
 cmd - tab : /usr/bin/env osascript <<< "display notification \"Blocked cmd + tab\" with title \"cope\"";
 
 # shortcut to open terminal
-lctrl + t : open -na Alacritty
+lctrl - t : open -na Alacritty
 
 # shortcut to open chrome
-lctrl + r : open -a "Google Chrome"
+lctrl - r : open -a "Google Chrome"

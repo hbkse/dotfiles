@@ -1,12 +1,12 @@
-tap "koekeishiya/formulae"
+# tap "koekeishiya/formulae"
 
 # brew "tmux"
 brew "lsd"
 brew "bat"
 brew "diff-so-fancy"
 # brew "nvm"
-brew "yabai"
-brew "skhd"
+brew "koekeishiya/formulae/yabai"
+brew "jackielii/tap/skhd-zig"
 
 cask "visual-studio-code"
 cask "cursor"
