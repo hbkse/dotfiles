@@ -78,7 +78,7 @@ alt - p         : yabai -m window --toggle zoom-fullscreen
 lctrl + alt - p : yabai -m window --toggle native-fullscreen
 
 # disable cmd - tab to get used to skhd
-cmd - tab : /usr/bin/env osascript <<< "display notification \"Blocked cmd + tab\" with title \"cope\"";
+# cmd - tab : /usr/bin/env osascript <<< "display notification \"Blocked cmd + tab\" with title \"cope\"";
 
 # shortcut to open terminal
 lctrl - t : open -na Alacritty
