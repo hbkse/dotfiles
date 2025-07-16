@@ -84,6 +84,10 @@ source $ZSH/oh-my-zsh.sh
 # export NVM_DIR=~/.nvm
 # source $(brew --prefix nvm)/nvm.sh
 
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
