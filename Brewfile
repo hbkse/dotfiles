@@ -21,3 +21,4 @@ cask "google-chrome"
 cask "spotify"
 cask "discord"
 cask "alacritty", args: { no_quarantine: true }
+cask "claude-code"
